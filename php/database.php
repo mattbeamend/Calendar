@@ -22,13 +22,18 @@
         $adminLastName = mysqli_real_escape_string($conn, $_POST['adminLastName']);
         $adminUsername = mysqli_real_escape_string($conn, $_POST['adminUsername']);
         $adminPassword = mysqli_real_escape_string($conn, $_POST['adminPassword']);
-        $passEncrypt = md5($adminPassword);
+        $password = md5($adminPassword);
 
         $query = "INSERT INTO calendars (Tag, Name, Admin) VALUES ('$calID', '$calName', '$adminUsername')";
-        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$passEncrypt', '$calID')";
+        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID')";
 
         $result = mysqli_query($conn, $query);
         $result2 = mysqli_query($conn, $query2);
+
+        $_SESSION['username'] = $adminUsername;
+        $_SESSION['firstname'] = $adminFirstName;
+        $_SESSION['lastname'] = $adminLastName;
+        $_SESSION['calendarID'] = $calID;
 
         header('location: home.php');
 
@@ -50,13 +55,39 @@
                 $_SESSION['firstname'] = $row['FirstName'];
                 $_SESSION['lastname'] = $row['LastName'];
                 $_SESSION['calendarID'] = $row['Calendar'];
-
             }
             
             header('location: home.php');
         }else {
             echo "Incorrect Username/Password";
         }
+    }
+
+    if(isset($_POST['addUser'])) {
+        $calendarID = mysqli_real_escape_string($conn, $_POST['calID']);
+        $firstname = mysqli_real_escape_string($conn, $_POST['userFirstName']);
+        $lastname = mysqli_real_escape_string($conn, $_POST['userLastName']);
+        $username = mysqli_real_escape_string($conn, $_POST['userUsername']);
+        $password = mysqli_real_escape_string($conn, $_POST['userPassword']); 
+        $password = md5($password);
+
+        $query = "SELECT * FROM calendars WHERE Tag = '$calendarID'";
+        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar) VALUES ('user', '$username', '$firstname', '$lastname', '$password', '$calendarID')";
+        $result = mysqli_query($conn, $query);
+
+        if(mysqli_num_rows($result) == 1) {
+            $result = mysqli_query($conn, $query2);
+
+            $_SESSION['username'] = $username;
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname'] = $lastname;
+            $_SESSION['calendarID'] = $calendarID;
+
+            header('location: home.php');
+        }
+
+
+        
     }
 
 

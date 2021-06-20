@@ -23,8 +23,11 @@
             <div class="form group text-center">
                 <button type="submit" id="loginBtn" name="login" class="btn btn-dark">Login</button>
             </div>
+            <p style="font-size: 16px;" class="text-center">Don't have an account? <br> You can <a href="register.php">Create</a> / <a href="adduser.php">Join</a> a Calendar!</p>
+            
         </form>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
