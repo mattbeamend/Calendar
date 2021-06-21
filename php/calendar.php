@@ -2,9 +2,22 @@
 
     session_start();
     include('connect.php');
+    
+    $calendarID = $_SESSION['calendarID'];
+
+
+    $query = "SELECT * FROM calendars WHERE Tag = '$calendarID'";
+    $result = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($result) == 1) {   
+        while($row = mysqli_fetch_assoc($result)) {
+            $_SESSION['calendarName'] = $row['Name'];
+        };
+    }
+
 
     // Fetch all events for calendar from database and store in array for FullCalendar to use
-    $calendarID = $_SESSION['calendarID'];
+    
     $query = "SELECT title, start, end FROM events WHERE CalendarID = '$calendarID'";
     $result = mysqli_query($conn, $query);
 
@@ -13,8 +26,6 @@
         while($row = mysqli_fetch_assoc($result)) {
             $eventArray[] = $row;
         }
-    }else {
-        echo "No results found!";
     }
 
     // Add events to events table in database from home.php

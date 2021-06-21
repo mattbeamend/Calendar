@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('php/calendar.php');
 
 if (!isset($_SESSION['username'])) {
@@ -10,6 +10,7 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['firstname']);
     unset($_SESSION['lastname']);
     unset($_SESSION['calendarID']);
+    unset($_SESSION['calendarName']);
     header("location: login.php");
 }
 ?>
@@ -18,9 +19,8 @@ if (isset($_GET['logout'])) {
 <html>
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/vendor/fullcalendar/dist/fullcalendar.min.css">
-    <link rel="stylesheet" href="assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
     <link href='lib/calendar/lib/main.css' rel='stylesheet' />
     <link href="./css/home.css" rel="stylesheet">
     <title>Home</title>
@@ -28,27 +28,35 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand mb-1" href="home.php"><?php echo $_SESSION['calendarID']; ?></a>
-            </div>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a id="logoutBtn" class="nav-link" href="home.php?logout='1'">Logout</a>
-                    </li>
-                </ul>
+                <a class="navbar-brand mb-1" href="home.php">Family Calendar</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a id="homeBtn" class="nav-link" href="home.php">Home</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a id="altProfileLink" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="logoutBtn" class="nav-link" href="home.php?logout='1'">Logout</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main class="container">
-        <h2 class="text-left">Welcome <?php echo $_SESSION['firstname']; ?></h2>
-        <div class="row">
-            <div id="custom-card" class="card text-dark bg-light col-md-4">
-                <h5 style="margin-top: 20px;" class="card-title text-center">Add an Event</h5>
+    <main style="padding-left: 5%; padding-right: 5%;" class="container-fluid">
+        <div style="margin-top: 3%;" class="row">
+            <div id="custom-card" class="card text-dark bg-light col-md-3">
+                <h2 style="margin-top: 20px;" class="text-center"><?php echo $_SESSION['calendarName']; ?></h2>
+                <hr />
+                <h5 class="card-title text-center">Add an Event</h5>
                 <form action="home.php" method="POST">
                     <div class="form-group">
                         <label for="eventName" class="form-label">Event Name</label>
@@ -68,11 +76,9 @@ if (isset($_GET['logout'])) {
 
                 </form>
             </div>
-            <div class="col-md-8" id="calendar"></div>
+            <div class="col-md-9" id="calendar"></div>
         </div>
     </main>
-
-
 
     <footer class="border-top footer blue text-muted">
         <div class="container text-center">
@@ -80,23 +86,27 @@ if (isset($_GET['logout'])) {
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src='lib/calendar/lib/main.js'></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 aspectRatio: 2,
-                themeSystem: 'boostrap',
+                themeSystem: 'bootstrap',
                 initialView: 'dayGridMonth',
-                height: 650,
+                height: 720,
                 allDay: true,
-                events: <?php echo json_encode($eventArray); ?>
+                events: <?php echo json_encode($eventArray); ?>,
+                eventColor: '#378006'
             });
             calendar.render();
         });
+
+        $('#calendar').fullCalendar('removeEvents', function(ev) {
+            return (ev._id == calEvent._id);
+        })
     </script>
-
 </body>
-
 </html>
