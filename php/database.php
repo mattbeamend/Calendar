@@ -2,18 +2,9 @@
 
     session_start();
 
-    $host = "localhost";
-    $user = "admin";
-    $password = "password";
+    include('connect.php');
 
-    // Create connection
-    $conn = mysqli_connect('localhost', 'root', '', 'calendardb');
-
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
+    // Create a new calendar and admin user (register.php)
     if(isset($_POST['registerCal'])) {
         $calName = mysqli_real_escape_string($conn, $_POST['calName']);
         $calID = mysqli_real_escape_string($conn, $_POST['calID']);
@@ -39,6 +30,7 @@
 
     }
 
+    // Login user page (login.php)
     if(isset($_POST['login'])) {
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -63,6 +55,7 @@
         }
     }
 
+    // Add user to calendar page (adduser.php)
     if(isset($_POST['addUser'])) {
         $calendarID = mysqli_real_escape_string($conn, $_POST['calID']);
         $firstname = mysqli_real_escape_string($conn, $_POST['userFirstName']);
@@ -85,10 +78,8 @@
 
             header('location: home.php');
         }
-
-
-        
     }
+
 
 
 ?>
