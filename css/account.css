@@ -5,3 +5,32 @@
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
 }
+
+.nav-bk5{
+    background: #0575E6;  
+    background: linear-gradient(to left, #0099ff, #003aa5);  
+    
+}
+
+#accountBtn {
+    color: rgba(255, 255, 255, 0.747)
+}
+
+#logoutBtn {
+    color:rgba(255, 255, 255, 0.747)
+}
+ 
+#homeBtn {
+    color: rgba(255, 255, 255, 0.747)
+}
+
+#accountBtn:hover {
+    color: rgb(255, 255, 255)
+}
+
+#logoutBtn:hover {
+    color: rgb(255, 255, 255)
+}
+#homeBtn:hover {
+    color: rgb(255, 255, 255)
+}

@@ -19,15 +19,15 @@ if (isset($_GET['logout'])) {
 <html>
 
 <head>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
     <link href="./css/account.css" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
     <title>Account</title>
 </head>
 
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark nav-bk5 mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand mb-1" href="home.php">Family Calendar</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -38,7 +38,7 @@ if (isset($_GET['logout'])) {
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a id="altProfileLink" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
+                            <a id="accountBtn" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
                         </li>
                         <li class="nav-item">
                             <a id="logoutBtn" class="nav-link" href="home.php?logout='1'">Logout</a>

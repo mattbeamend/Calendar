@@ -16,7 +16,7 @@
         $password = md5($adminPassword);
 
         $query = "INSERT INTO calendars (Tag, Name, Admin) VALUES ('$calID', '$calName', '$adminUsername')";
-        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID')";
+        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID', '#5c7cff')";
 
         $result = mysqli_query($conn, $query);
         $result2 = mysqli_query($conn, $query2);
@@ -62,10 +62,11 @@
         $lastname = mysqli_real_escape_string($conn, $_POST['userLastName']);
         $username = mysqli_real_escape_string($conn, $_POST['userUsername']);
         $password = mysqli_real_escape_string($conn, $_POST['userPassword']); 
+        $userColor = rand_color();
         $password = md5($password);
 
         $query = "SELECT * FROM calendars WHERE Tag = '$calendarID'";
-        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar) VALUES ('user', '$username', '$firstname', '$lastname', '$password', '$calendarID')";
+        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('user', '$username', '$firstname', '$lastname', '$password', '$calendarID', '$userColor')";
         $result = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($result) == 1) {
@@ -78,6 +79,10 @@
 
             header('location: home.php');
         }
+    }
+
+    function rand_color() {
+        return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }
 
 

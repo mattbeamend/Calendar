@@ -19,19 +19,19 @@ if (isset($_GET['logout'])) {
 <html>
 
 <head>
+    <link href="./css/home.css" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
     <link href='lib/calendar/lib/main.css' rel='stylesheet' />
-    <link href="./css/home.css" rel="stylesheet">
     <title>Home</title>
 
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark nav-bk5 mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand mb-1" href="home.php">Family Calendar</a>
+                <a class="navbar-brand mb-1" href="home.php"><?php echo $_SESSION['calendarName']; ?></a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -40,7 +40,7 @@ if (isset($_GET['logout'])) {
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a id="altProfileLink" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
+                            <a id="accountBtn" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
                         </li>
                         <li class="nav-item">
                             <a id="logoutBtn" class="nav-link" href="home.php?logout='1'">Logout</a>
@@ -54,8 +54,6 @@ if (isset($_GET['logout'])) {
     <main style="padding-left: 5%; padding-right: 5%;" class="container-fluid">
         <div style="margin-top: 3%;" class="row">
             <div id="custom-card" class="card text-dark bg-light col-md-3">
-                <h2 style="margin-top: 20px;" class="text-center"><?php echo $_SESSION['calendarName']; ?></h2>
-                <hr />
                 <h5 class="card-title text-center">Add an Event</h5>
                 <form action="home.php" method="POST">
                     <div class="form-group">
@@ -99,14 +97,14 @@ if (isset($_GET['logout'])) {
                 height: 720,
                 allDay: true,
                 events: <?php echo json_encode($eventArray); ?>,
-                eventColor: '#378006'
+                eventColor: '#007bff',
+                headerToolbar: {left: 'prev', center: 'title', right: 'next'},
+                
             });
             calendar.render();
         });
 
-        $('#calendar').fullCalendar('removeEvents', function(ev) {
-            return (ev._id == calEvent._id);
-        })
     </script>
 </body>
+
 </html>

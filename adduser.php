@@ -34,12 +34,12 @@
             <div class="form-group">
                 <input type="password" class="form-control" name="userPassword" placeholder="Password" required>
             </div>
-
             <div class="form-group text-center">
                 <button type="submit" id="addBtn" name="addUser" class="btn btn-dark">Register</button>
             </div>
             <a class="text-center" href="login.php">Back to Login.</a>
         </form>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 

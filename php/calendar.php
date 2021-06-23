@@ -18,7 +18,7 @@
 
     // Fetch all events for calendar from database and store in array for FullCalendar to use
     
-    $query = "SELECT title, start, end FROM events WHERE CalendarID = '$calendarID'";
+    $query = "SELECT events.title, events.start, events.end, users.color FROM events INNER JOIN users ON events.CalendarID = '$calendarID' AND events.Creator = users.Username";
     $result = mysqli_query($conn, $query);
 
     $eventArray = array();
