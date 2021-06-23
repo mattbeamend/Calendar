@@ -20,9 +20,13 @@ if (isset($_GET['logout'])) {
 
 <head>
     <link href="./css/home.css" rel="stylesheet">
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
     <link href='lib/calendar/lib/main.css' rel='stylesheet' />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <title>Home</title>
 
 </head>
@@ -53,27 +57,53 @@ if (isset($_GET['logout'])) {
 
     <main style="padding-left: 5%; padding-right: 5%;" class="container-fluid">
         <div style="margin-top: 3%;" class="row">
-            <div id="custom-card" class="card text-dark bg-light col-md-3">
-                <h5 class="card-title text-center">Add an Event</h5>
-                <form action="home.php" method="POST">
-                    <div class="form-group">
-                        <label for="eventName" class="form-label">Event Name</label>
-                        <input type="text" class="form-control" name="eventName" placeholder="" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="startDate" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" name="startDate" placeholder="" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="endDate" class="form-label">End Date</label>
-                        <input type="date" class="form-control" name="endDate" placeholder="">
-                    </div>
-                    <div style="margin-top: 10px;" class="form-group text-center">
-                        <button type="submit" id="submitEvent" name="submitEvent" class="btn btn-dark">Create Event</button>
-                    </div>
 
-                </form>
+            <div style="border-radius: 20px;" class="container col-md-3">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#add">Create</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#edit">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#remove">Remove</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div style="border-radius: 15px;" class="card tab-content">
+                    <div class="tab-pane container active" id="add">
+                        <form action="home.php" method="POST">
+                            <div class="form-group">
+                                <label for="eventName" class="form-label">Event Name</label>
+                                <input type="text" class="form-control" name="eventName" placeholder="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" name="startDate" placeholder="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" name="endDate" placeholder="">
+                            </div>
+                            <div style="margin-top: 10px;" class="form-group text-center">
+                                <button type="submit" id="submitEvent" name="submitEvent" class="btn btn-dark">Create Event</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane container fade" id="edit">
+                        2
+                    </div>
+                    <div class="tab-pane container fade" id="remove">
+                        3
+                    </div>
+                </div>
             </div>
+
+
+
+
             <div class="col-md-9" id="calendar"></div>
         </div>
     </main>
@@ -98,12 +128,29 @@ if (isset($_GET['logout'])) {
                 allDay: true,
                 events: <?php echo json_encode($eventArray); ?>,
                 eventColor: '#007bff',
-                headerToolbar: {left: 'prev', center: 'title', right: 'next'},
-                
+                headerToolbar: {
+                    left: 'prev',
+                    center: 'title',
+                    right: 'next'
+                },
+
             });
             calendar.render();
         });
 
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
+
+        $('#myTab a').on('click', function(e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
     </script>
 </body>
 

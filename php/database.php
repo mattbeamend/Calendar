@@ -16,7 +16,7 @@
         $password = md5($adminPassword);
 
         $query = "INSERT INTO calendars (Tag, Name, Admin) VALUES ('$calID', '$calName', '$adminUsername')";
-        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID', '#5c7cff')";
+        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID', '#0080ff')";
 
         $result = mysqli_query($conn, $query);
         $result2 = mysqli_query($conn, $query2);

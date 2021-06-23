@@ -29,7 +29,7 @@ if (isset($_GET['logout'])) {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark nav-bk5 mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand mb-1" href="home.php">Family Calendar</a>
+                <a class="navbar-brand mb-1" href="home.php"><?php echo $_SESSION['calendarName']; ?></a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -51,11 +51,11 @@ if (isset($_GET['logout'])) {
 
     <main class="container">
         <div style="padding: 10px;" id="custom-card" class="card text-dark bg-light col-md-4">
-           <h2 class="text-center">Account Details</h2>
-           <p><strong>Name:</strong> <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></p>
-           <p><strong>Username:</strong> <?php echo $_SESSION['username']?>
-           <p><strong>Account Calendar:</strong> <?php echo $_SESSION['calendarName']?>
-           <p><strong>Calendar ID:</strong> <?php echo $_SESSION['calendarID']?></p>
+            <h2 class="text-center">Account Details</h2>
+            <p><strong>Name:</strong> <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></p>
+            <p><strong>Username:</strong> <?php echo $_SESSION['username'] ?>
+            <p><strong>Account Calendar:</strong> <?php echo $_SESSION['calendarName'] ?>
+            <p><strong>Calendar ID:</strong> <?php echo $_SESSION['calendarID'] ?></p>
 
         </div>
         <div class="col-md-8" id="calendar"></div>
