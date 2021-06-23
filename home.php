@@ -73,7 +73,9 @@ if (isset($_GET['logout'])) {
 
                 <!-- Tab panes -->
                 <div style="border-radius: 15px;" class="card tab-content">
-                    <div class="tab-pane container active" id="add">
+                    <div class="tab-pane fade show active" id="add">
+                        <h5 style="margin-bottom: 20px; font-size: 35px" class="display-1 text-center">Create Event</h5>
+                        <hr />
                         <form action="home.php" method="POST">
                             <div class="form-group">
                                 <label for="eventName" class="form-label">Event Name</label>
@@ -93,10 +95,12 @@ if (isset($_GET['logout'])) {
                         </form>
                     </div>
                     <div class="tab-pane container fade" id="edit">
-                        2
+                        <h5 style="margin-bottom: 20px; font-size: 35px" class="display-1 text-center">Edit Event</h5>
+                        <hr />
                     </div>
                     <div class="tab-pane container fade" id="remove">
-                        3
+                        <h5 style="margin-bottom: 20px; font-size: 35px" class="display-1 text-center">Remove Event</h5>
+                        <hr />
                     </div>
                 </div>
             </div>

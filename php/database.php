@@ -47,6 +47,7 @@
                 $_SESSION['firstname'] = $row['FirstName'];
                 $_SESSION['lastname'] = $row['LastName'];
                 $_SESSION['calendarID'] = $row['Calendar'];
+                $_SESSION['color'] = $row['color'];
             }
             
             header('location: home.php');
