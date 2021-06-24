@@ -55,7 +55,7 @@ if (isset($_GET['logout'])) {
         </nav>
     </header>
 
-    <main style="padding-left: 5%; padding-right: 5%;" class="container-fluid">
+    <main id="main-container" class="container-fluid">
         <div style="margin-top: 3%;" class="row">
 
             <div style="border-radius: 20px;" class="container col-md-3">
@@ -72,9 +72,9 @@ if (isset($_GET['logout'])) {
                 </ul>
 
                 <!-- Tab panes -->
-                <div style="border-radius: 15px;" class="card tab-content">
+                <div style="border-radius: 15px; margin-bottom: 20px" class="card tab-content">
                     <div class="tab-pane fade show active" id="add">
-                        <h5 style="margin-bottom: 20px; font-size: 35px" class="display-1 text-center">Create Event</h5>
+                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 400" class="text-center">Create Event</h5>
                         <hr />
                         <form action="home.php" method="POST">
                             <div class="form-group">
@@ -95,15 +95,30 @@ if (isset($_GET['logout'])) {
                         </form>
                     </div>
                     <div class="tab-pane container fade" id="edit">
-                        <h5 style="margin-bottom: 20px; font-size: 35px" class="display-1 text-center">Edit Event</h5>
+                        <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 400" class="text-center">Edit Event</h4>
                         <hr />
                     </div>
                     <div class="tab-pane container fade" id="remove">
-                        <h5 style="margin-bottom: 20px; font-size: 35px" class="display-1 text-center">Remove Event</h5>
+                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 400" class="text-center">Remove Event</h5>
                         <hr />
                     </div>
                 </div>
+
+                <div style="border-radius: 15px;" class="card">
+                    <table>
+                        <?php 
+                            while($row = mysqli_fetch_assoc($result2)) {
+                                echo "<tr>";
+                                echo "<td><div style='background-color:" . $row['color'] . "' class='dot'></div></td>";
+                                echo "<td>".$row['FirstName'] . " " . $row['LastName']. "</td>"; 
+                                echo "</tr>";
+                            }
+                        ?>
+                    </table>
+                </div>
             </div>
+
+
 
 
 

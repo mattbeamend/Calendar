@@ -11,6 +11,7 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['lastname']);
     unset($_SESSION['calendarID']);
     unset($_SESSION['calendarName']);
+    unset($_SESSION['color']);
     header("location: login.php");
 }
 ?>
@@ -59,7 +60,6 @@ if (isset($_GET['logout'])) {
 
         </div>
         <div class="col-md-8" id="calendar"></div>
-        </div>
     </main>
 
     <footer class="border-top footer blue text-muted">

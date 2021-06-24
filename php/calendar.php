@@ -28,6 +28,10 @@
         }
     }
 
+    $query2 = "SELECT * FROM users WHERE Calendar = '$_SESSION[calendarID]'";
+    $result2 = mysqli_query($conn, $query2);
+
+
     // Add events to events table in database from home.php
     if(isset($_POST['submitEvent'])) {
 

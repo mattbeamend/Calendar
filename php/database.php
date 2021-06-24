@@ -25,6 +25,7 @@
         $_SESSION['firstname'] = $adminFirstName;
         $_SESSION['lastname'] = $adminLastName;
         $_SESSION['calendarID'] = $calID;
+        $_SESSION['color'] = '#0080ff';
 
         header('location: home.php');
 
@@ -77,6 +78,7 @@
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
             $_SESSION['calendarID'] = $calendarID;
+            $_SESSION['color'] = $userColor;
 
             header('location: home.php');
         }
