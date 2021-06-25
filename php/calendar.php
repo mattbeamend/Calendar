@@ -51,6 +51,27 @@
         header('location: home.php');
     }
 
+    if(isset($_POST['editEvent'])) {
+        
+        $event = mysqli_real_escape_string($conn, $_POST['editEventName']);
+        $start = mysqli_real_escape_string($conn, $_POST['editStartDate']);
+        $end = mysqli_real_escape_string($conn, $_POST['editEndDate']);
+        $originalName = mysqli_real_escape_string($conn, $_POST['originalName']);
+
+        if($end != null) {
+            $end = date('Y-m-d', strtotime("+1 day", strtotime($end)));
+        }
+        $calendarID = $_SESSION['calendarID'];
+
+        $query = "UPDATE events SET title = '$event', start = '$start', end = '$end' WHERE CalendarID = '$calendarID' AND title = '$originalName'";
+        $result = mysqli_query($conn, $query);
+        header('location: home.php');
+
+    }
+
+    // Fetch selected event start and end dates
+
+
 
 
 

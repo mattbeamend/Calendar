@@ -17,6 +17,10 @@
     line-height: 60px; /* Vertically center the text there */
 }
 
+.form-control {
+    border-radius: 10px;
+}
+
 .dot {
     height: 15px;
     width: 15px;
@@ -32,8 +36,22 @@
 .tab-content {
     margin-top: 20px;
     padding: 20px;
+    padding-bottom: 5px;
 }
 
+#submitEvent {
+    margin-top: 10px;
+    background: #0575E6;
+    border-style: none;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+}
+
+#submitEvent:hover {
+    background: #003aa5
+}
 
 .nav-bk5{
     background: #0575E6;  

@@ -59,7 +59,7 @@ if (isset($_GET['logout'])) {
         <div style="margin-top: 3%;" class="row">
 
             <div style="border-radius: 20px;" class="container col-md-3">
-                <ul class="nav nav-pills nav-fill">
+                <ul id="eventMenu" class="nav nav-pills nav-fill">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="pill" href="#add">Create</a>
                     </li>
@@ -74,45 +74,67 @@ if (isset($_GET['logout'])) {
                 <!-- Tab panes -->
                 <div style="border-radius: 15px; margin-bottom: 20px" class="card tab-content">
                     <div class="tab-pane fade show active" id="add">
-                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 400" class="text-center">Create Event</h5>
+                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Create Event</h5>
                         <hr />
                         <form action="home.php" method="POST">
                             <div class="form-group">
                                 <label for="eventName" class="form-label">Event Name</label>
-                                <input type="text" class="form-control" name="eventName" placeholder="" required>
+                                <input style="border-radius: 10px" type="text" class="form-control" name="eventName" placeholder="" required>
                             </div>
                             <div class="form-group">
                                 <label for="startDate" class="form-label">Start Date</label>
-                                <input type="date" class="form-control" name="startDate" placeholder="" required>
+                                <input style="border-radius: 10px" type="date" class="form-control" name="startDate" placeholder="" required>
                             </div>
                             <div class="form-group">
                                 <label for="endDate" class="form-label">End Date</label>
-                                <input type="date" class="form-control" name="endDate" placeholder="">
+                                <input style="border-radius: 10px" type="date" class="form-control" name="endDate" placeholder="">
                             </div>
                             <div style="margin-top: 10px;" class="form-group text-center">
                                 <button type="submit" id="submitEvent" name="submitEvent" class="btn btn-dark">Create Event</button>
                             </div>
                         </form>
                     </div>
+
                     <div class="tab-pane container fade" id="edit">
-                        <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 400" class="text-center">Edit Event</h4>
+                        <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Edit Event</h4>
+                        <p class="text-center">Click on an event you want to change.</p>
                         <hr />
+                        <form action="home.php" method="POST">
+                            <div class="form-group">
+                                <label for="eventName" class="form-label">Event Name</label>
+                                <input style="border-radius: 10px" type="text" class="form-control" id="editEventName" name="editEventName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input style="border-radius: 10px" type="date" class="form-control" id="editStartDate" name="editStartDate" placeholder="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input style="border-radius: 10px" type="date" class="form-control" id="editEndDate" name="editEndDate" placeholder="">
+                            </div>
+                            <input type="hidden" id="originalName" name="originalName">
+
+                            <div style="margin-top: 10px;" class="form-group text-center">
+                                <button type="submit" id="editEvent" name="editEvent" class="btn btn-dark">Edit Event</button>
+                            </div>
+                        </form>
+
                     </div>
                     <div class="tab-pane container fade" id="remove">
-                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 400" class="text-center">Remove Event</h5>
+                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Remove Event</h5>
                         <hr />
                     </div>
                 </div>
 
                 <div style="border-radius: 15px;" class="card">
                     <table>
-                        <?php 
-                            while($row = mysqli_fetch_assoc($result2)) {
-                                echo "<tr>";
-                                echo "<td><div style='background-color:" . $row['color'] . "' class='dot'></div></td>";
-                                echo "<td>".$row['FirstName'] . " " . $row['LastName']. "</td>"; 
-                                echo "</tr>";
-                            }
+                        <?php
+                        while ($row = mysqli_fetch_assoc($result2)) {
+                            echo "<tr>";
+                            echo "<td><div style='background-color:" . $row['color'] . "' class='dot'></div></td>";
+                            echo "<td>" . $row['FirstName'] . " " . $row['LastName'] . "</td>";
+                            echo "</tr>";
+                        }
                         ?>
                     </table>
                 </div>
@@ -152,24 +174,27 @@ if (isset($_GET['logout'])) {
                     center: 'title',
                     right: 'next'
                 },
+                eventClick: function(info) {
+                    $('#eventMenu a[href="#edit"]').tab('show');
+
+                    document.getElementById("editEventName").value = info.event.title;
+                    document.getElementById("originalName").value = info.event.title;
+
+                    var eventStart = new Date();
+                    eventStart.setDate(info.event.start.getDate());
+                    document.getElementById("editStartDate").value = eventStart.toISOString().substr(0, 10);
+
+                    if (info.event.end == null) {
+                        document.getElementById("editEndDate").value = "";
+                    } else {
+                        document.getElementById("editEndDate").value = info.event.end.toISOString().substr(0, 10);
+                    }
+
+                }
 
             });
             calendar.render();
         });
-
-        function openCity(cityName) {
-            var i;
-            var x = document.getElementsByClassName("city");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            document.getElementById(cityName).style.display = "block";
-        }
-
-        $('#myTab a').on('click', function(e) {
-            e.preventDefault()
-            $(this).tab('show')
-        })
     </script>
 </body>
 
