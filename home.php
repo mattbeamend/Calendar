@@ -95,7 +95,7 @@ if (isset($_GET['logout'])) {
                         </form>
                     </div>
 
-                    <div class="tab-pane container fade" id="edit">
+                    <div style="padding: 0px" class="tab-pane container fade" id="edit">
                         <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Edit Event</h4>
                         <p class="text-center">Click on an event you want to change.</p>
                         <hr />
@@ -120,9 +120,28 @@ if (isset($_GET['logout'])) {
                         </form>
 
                     </div>
-                    <div class="tab-pane container fade" id="remove">
-                        <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Remove Event</h5>
+                    <div style="padding: 0px" class="tab-pane container fade" id="remove">
+                        <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Remove Event</h4>
+                        <p class="text-center">Click on an event you want to remove.</p>
                         <hr />
+                        <form action="home.php" method="POST">
+                            <div class="form-group">
+                                <label for="eventName" class="form-label">Event Name</label>
+                                <input style="border-radius: 10px" type="text" class="form-control" id="removeEventName" name="removeEventName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input style="border-radius: 10px" type="date" class="form-control" id="removeStartDate" name="removeStartDate" placeholder="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input style="border-radius: 10px" type="date" class="form-control" id="removeEndDate" name="removeEndDate" placeholder="" readonly>
+                            </div>
+
+                            <div style="margin-top: 10px;" class="form-group text-center">
+                                <button type="submit" id="removeEvent" name="removeEvent" class="btn btn-dark">Remove Event</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -175,19 +194,51 @@ if (isset($_GET['logout'])) {
                     right: 'next'
                 },
                 eventClick: function(info) {
-                    $('#eventMenu a[href="#edit"]').tab('show');
 
-                    document.getElementById("editEventName").value = info.event.title;
-                    document.getElementById("originalName").value = info.event.title;
+                    var id = $('.tab-content .active').attr('id');
 
-                    var eventStart = new Date();
-                    eventStart.setDate(info.event.start.getDate());
-                    document.getElementById("editStartDate").value = eventStart.toISOString().substr(0, 10);
+                    if (id == "edit") {
+                        document.getElementById("editEventName").value = info.event.title;
+                        document.getElementById("originalName").value = info.event.title;
 
-                    if (info.event.end == null) {
-                        document.getElementById("editEndDate").value = "";
+                        var eventStart = new Date();
+                        eventStart.setDate(info.event.start.getDate());
+                        document.getElementById("editStartDate").value = eventStart.toISOString().substr(0, 10);
+
+                        if (info.event.end == null) {
+                            document.getElementById("editEndDate").value = "";
+                        } else {
+                            document.getElementById("editEndDate").value = info.event.end.toISOString().substr(0, 10);
+                        }
+
+                    } else if (id == "remove") {
+                        document.getElementById("removeEventName").value = info.event.title;
+
+                        var eventStart = new Date();
+                        eventStart.setDate(info.event.start.getDate());
+                        document.getElementById("removeStartDate").value = eventStart.toISOString().substr(0, 10);
+
+                        if (info.event.end == null) {
+                            document.getElementById("removeEndDate").value = "";
+                        } else {
+                            document.getElementById("removeEndDate").value = info.event.end.toISOString().substr(0, 10);
+                        }
+
                     } else {
-                        document.getElementById("editEndDate").value = info.event.end.toISOString().substr(0, 10);
+                        $('#eventMenu a[href="#edit"]').tab('show');
+
+                        document.getElementById("editEventName").value = info.event.title;
+                        document.getElementById("originalName").value = info.event.title;
+
+                        var eventStart = new Date();
+                        eventStart.setDate(info.event.start.getDate());
+                        document.getElementById("editStartDate").value = eventStart.toISOString().substr(0, 10);
+
+                        if (info.event.end == null) {
+                            document.getElementById("editEndDate").value = "";
+                        } else {
+                            document.getElementById("editEndDate").value = info.event.end.toISOString().substr(0, 10);
+                        }
                     }
 
                 }

@@ -69,6 +69,23 @@
 
     }
 
+    if(isset($_POST['removeEvent'])) {
+        
+        $event = mysqli_real_escape_string($conn, $_POST['removeEventName']);
+        $start = mysqli_real_escape_string($conn, $_POST['removeStartDate']);
+        $end = mysqli_real_escape_string($conn, $_POST['removeEndDate']);
+
+        if($end != null) {
+            $end = date('Y-m-d', strtotime("+1 day", strtotime($end)));
+        }
+        $calendarID = $_SESSION['calendarID'];
+
+        $query = "DELETE FROM events WHERE title = '$event' AND start = '$start' AND end = '$end' AND CalendarID = '$calendarID'";
+        $result = mysqli_query($conn, $query);
+        header('location: home.php');
+
+    }
+
     // Fetch selected event start and end dates
 
 
