@@ -51,12 +51,22 @@ if (isset($_GET['logout'])) {
     </header>
 
     <main class="container">
-        <div style="padding: 10px;" id="custom-card" class="card text-dark bg-light col-md-4">
-            <h2 class="text-center">Account Details</h2>
-            <p><strong>Name:</strong> <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></p>
-            <p><strong>Username:</strong> <?php echo $_SESSION['username'] ?>
-            <p><strong>Account Calendar:</strong> <?php echo $_SESSION['calendarName'] ?>
-            <p><strong>Calendar ID:</strong> <?php echo $_SESSION['calendarID'] ?></p>
+        <div id="custom-card" class="card ">
+            <h2 style="font-size: 40px; margin-bottom: 20px" class="display-4 text-center">Account Details</h2>
+            <div class="form-group">
+                <span>Name:</span>
+                <input style="margin-bottom: 10px;" type="text" class="form-control" value="<?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?>" readonly>
+                
+                <span>Username</span>
+                <input style="margin-bottom: 10px;" type="text" class="form-control" value="<?php echo $_SESSION['username'] ?>" readonly>
+
+                <span>Calendar</span>
+                <input style="margin-bottom: 10px;" type="text" class="form-control" value="<?php echo $_SESSION['calendarName'] ?>" readonly>
+
+                <span>Calendar ID</span>
+                <input type="text" class="form-control" value="<?php echo $_SESSION['calendarID'] ?>" readonly>
+
+            </div>
 
         </div>
         <div class="col-md-8" id="calendar"></div>

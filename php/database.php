@@ -64,7 +64,7 @@
         $lastname = mysqli_real_escape_string($conn, $_POST['userLastName']);
         $username = mysqli_real_escape_string($conn, $_POST['userUsername']);
         $password = mysqli_real_escape_string($conn, $_POST['userPassword']); 
-        $userColor = rand_color();
+        $userColor = mysqli_real_escape_string($conn, $_POST['userColor']); 
         $password = md5($password);
 
         $query = "SELECT * FROM calendars WHERE Tag = '$calendarID'";

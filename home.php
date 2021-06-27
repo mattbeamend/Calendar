@@ -200,10 +200,10 @@ if (isset($_GET['logout'])) {
                     if (id == "edit") {
                         document.getElementById("editEventName").value = info.event.title;
                         document.getElementById("originalName").value = info.event.title;
-
-                        var eventStart = new Date();
-                        eventStart.setDate(info.event.start.getDate());
-                        document.getElementById("editStartDate").value = eventStart.toISOString().substr(0, 10);
+                        
+                        var start = info.event.start;
+                        start.setDate(start.getDate()+1);
+                        document.getElementById("editStartDate").value = start.toISOString().substr(0,10);
 
                         if (info.event.end == null) {
                             document.getElementById("editEndDate").value = "";
@@ -214,9 +214,9 @@ if (isset($_GET['logout'])) {
                     } else if (id == "remove") {
                         document.getElementById("removeEventName").value = info.event.title;
 
-                        var eventStart = new Date();
-                        eventStart.setDate(info.event.start.getDate());
-                        document.getElementById("removeStartDate").value = eventStart.toISOString().substr(0, 10);
+                        var start = info.event.start;
+                        start.setDate(start.getDate()+1);
+                        document.getElementById("removeStartDate").value = start.toISOString().substr(0,10);
 
                         if (info.event.end == null) {
                             document.getElementById("removeEndDate").value = "";

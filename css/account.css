@@ -6,10 +6,25 @@
     line-height: 60px; /* Vertically center the text there */
 }
 
+.form-control {
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
 .nav-bk5{
     background: #0575E6;  
     background: linear-gradient(to left, #0099ff, #003aa5);  
     
+}
+
+#custom-card {
+    margin: auto;
+    margin-top: 10%;
+    width: 500px;
+    padding: 20px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+
 }
 
 #accountBtn {

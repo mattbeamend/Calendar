@@ -17,4 +17,10 @@
     height: 55px;
     border-radius: 10px;
     font-size: large;
+    background-color: #0575E6;
+    border-style: none;
+}
+
+#loginBtn:hover {
+    background-color: #003aa5;
 }

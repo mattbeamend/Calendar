@@ -34,6 +34,11 @@
             <div class="form-group">
                 <input type="password" class="form-control" name="userPassword" placeholder="Password" required>
             </div>
+            <div class="container center_div text-center">
+                <label class="text-center">Select your colour</label>
+                <input style="width:100%; height: 30px" type="color" name="userColor" value="#5ec6f2">
+            </div>
+
             <div class="form-group text-center">
                 <button type="submit" id="addBtn" name="addUser" class="btn btn-dark">Register</button>
             </div>
