@@ -30,11 +30,11 @@ if (isset($_GET['logout'])) {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark nav-bk5 mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand mb-1" href="home.php"><?php echo $_SESSION['calendarName']; ?></a>
+                <a class="navbar-brand mb-1" href="index.php"><?php echo $_SESSION['calendarName']; ?></a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a id="homeBtn" class="nav-link" href="home.php">Home</a>
+                            <a id="homeBtn" class="nav-link" href="index.php">Home</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -42,7 +42,7 @@ if (isset($_GET['logout'])) {
                             <a id="accountBtn" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
                         </li>
                         <li class="nav-item">
-                            <a id="logoutBtn" class="nav-link" href="home.php?logout='1'">Logout</a>
+                            <a id="logoutBtn" class="nav-link" href="index.php?logout='1'">Logout</a>
                         </li>
                     </ul>
                 </div>

@@ -32,7 +32,7 @@
     $result2 = mysqli_query($conn, $query2);
 
 
-    // Add events to events table in database from home.php
+    // Add events to events table in database from index.php
     if(isset($_POST['submitEvent'])) {
 
         $event = mysqli_real_escape_string($conn, $_POST['eventName']);
@@ -48,7 +48,7 @@
         $query = "INSERT INTO events (title, start, end, Creator, CalendarID) VALUES ('$event', '$start', '$end', '$creator', '$calendarID')";
         $result = mysqli_query($conn, $query);
 
-        header('location: home.php');
+        header('location: index.php');
     }
 
     if(isset($_POST['editEvent'])) {
@@ -65,7 +65,7 @@
 
         $query = "UPDATE events SET title = '$event', start = '$start', end = '$end' WHERE CalendarID = '$calendarID' AND title = '$originalName'";
         $result = mysqli_query($conn, $query);
-        header('location: home.php');
+        header('location: index.php');
 
     }
 
@@ -82,7 +82,7 @@
 
         $query = "DELETE FROM events WHERE title = '$event' AND start = '$start' AND end = '$end' AND CalendarID = '$calendarID'";
         $result = mysqli_query($conn, $query);
-        header('location: home.php');
+        header('location: index.php');
 
     }
 

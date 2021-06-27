@@ -19,7 +19,7 @@ if (isset($_GET['logout'])) {
 <html>
 
 <head>
-    <link href="./css/home.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
     <link href='lib/calendar/lib/main.css' rel='stylesheet' />
@@ -35,11 +35,11 @@ if (isset($_GET['logout'])) {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark nav-bk5 mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand mb-1" href="home.php"><?php echo $_SESSION['calendarName']; ?></a>
+                <a class="navbar-brand mb-1" href="index.php"><?php echo $_SESSION['calendarName']; ?></a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a id="homeBtn" class="nav-link" href="home.php">Home</a>
+                            <a id="homeBtn" class="nav-link" href="index.php">Home</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -47,7 +47,7 @@ if (isset($_GET['logout'])) {
                             <a id="accountBtn" class="nav-link" href="account.php"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?> </a>
                         </li>
                         <li class="nav-item">
-                            <a id="logoutBtn" class="nav-link" href="home.php?logout='1'">Logout</a>
+                            <a id="logoutBtn" class="nav-link" href="index.php?logout='1'">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -76,7 +76,7 @@ if (isset($_GET['logout'])) {
                     <div class="tab-pane fade show active" id="add">
                         <h5 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Create Event</h5>
                         <hr />
-                        <form action="home.php" method="POST">
+                        <form action="index.php" method="POST">
                             <div class="form-group">
                                 <label for="eventName" class="form-label">Event Name</label>
                                 <input style="border-radius: 10px" type="text" class="form-control" name="eventName" placeholder="" required>
@@ -99,7 +99,7 @@ if (isset($_GET['logout'])) {
                         <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Edit Event</h4>
                         <p class="text-center">Click on an event you want to change.</p>
                         <hr />
-                        <form action="home.php" method="POST">
+                        <form action="index.php" method="POST">
                             <div class="form-group">
                                 <label for="eventName" class="form-label">Event Name</label>
                                 <input style="border-radius: 10px" type="text" class="form-control" id="editEventName" name="editEventName" required>
@@ -124,7 +124,7 @@ if (isset($_GET['logout'])) {
                         <h4 style="margin-bottom: 20px; font-size: 30px; font-weight: 500" class="text-center">Remove Event</h4>
                         <p class="text-center">Click on an event you want to remove.</p>
                         <hr />
-                        <form action="home.php" method="POST">
+                        <form action="index.php" method="POST">
                             <div class="form-group">
                                 <label for="eventName" class="form-label">Event Name</label>
                                 <input style="border-radius: 10px" type="text" class="form-control" id="removeEventName" name="removeEventName" readonly>

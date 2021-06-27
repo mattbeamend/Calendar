@@ -27,7 +27,7 @@
         $_SESSION['calendarID'] = $calID;
         $_SESSION['color'] = '#0080ff';
 
-        header('location: home.php');
+        header('location: index.php');
 
     }
 
@@ -51,7 +51,7 @@
                 $_SESSION['color'] = $row['color'];
             }
             
-            header('location: home.php');
+            header('location: index.php');
         }else {
             echo "Incorrect Username/Password";
         }
@@ -80,7 +80,7 @@
             $_SESSION['calendarID'] = $calendarID;
             $_SESSION['color'] = $userColor;
 
-            header('location: home.php');
+            header('location: index.php');
         }
     }
 
