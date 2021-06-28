@@ -8,4 +8,4 @@ At some point I plan to expand this project to support daily schedules and harne
 
 Try Family Calendar yourself: [http://familycalendar.epizy.com](http://familycalendar.epizy.com)
 
-<img src="screenshot.JPG" width="800">
+<img src="screenshot.JPG">
