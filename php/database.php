@@ -15,20 +15,33 @@
         $adminPassword = mysqli_real_escape_string($conn, $_POST['adminPassword']);
         $password = md5($adminPassword);
 
-        $query = "INSERT INTO calendars (Tag, Name, Admin) VALUES ('$calID', '$calName', '$adminUsername')";
-        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID', '#0080ff')";
-
+        $query = "SELECT * FROM calendars WHERE Tag = '$calID'";
         $result = mysqli_query($conn, $query);
+
+        $query2 = "SELECT * FROM users WHERE Username = '$adminUsername'";
         $result2 = mysqli_query($conn, $query2);
-
-        $_SESSION['username'] = $adminUsername;
-        $_SESSION['firstname'] = $adminFirstName;
-        $_SESSION['lastname'] = $adminLastName;
-        $_SESSION['calendarID'] = $calID;
-        $_SESSION['color'] = '#0080ff';
-
-        header('location: index.php');
-
+        
+        if(mysqli_num_rows($result) >= 1) {
+            $_SESSION["error"] = "Calendar ID already exists.";
+        }
+        else if(mysqli_num_rows($result2) >= 1) {
+            $_SESSION["error"] = "Username already exists";
+        }
+        else {
+            $query = "INSERT INTO calendars (Tag, Name, Admin) VALUES ('$calID', '$calName', '$adminUsername')";
+            $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('admin', '$adminUsername', '$adminFirstName', '$adminLastName', '$password', '$calID', '#0080ff')";
+    
+            $result = mysqli_query($conn, $query);
+            $result2 = mysqli_query($conn, $query2);
+    
+            $_SESSION['username'] = $adminUsername;
+            $_SESSION['firstname'] = $adminFirstName;
+            $_SESSION['lastname'] = $adminLastName;
+            $_SESSION['calendarID'] = $calID;
+            $_SESSION['color'] = '#0080ff';
+    
+            header('location: index.php');
+        }
     }
 
     // Login user page (login.php)
@@ -53,7 +66,8 @@
             
             header('location: index.php');
         }else {
-            echo "Incorrect Username/Password";
+            $error = "Incorrect Username/Password";
+            $_SESSION["error"] = $error;
         }
     }
 
@@ -68,10 +82,19 @@
         $password = md5($password);
 
         $query = "SELECT * FROM calendars WHERE Tag = '$calendarID'";
-        $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('user', '$username', '$firstname', '$lastname', '$password', '$calendarID', '$userColor')";
         $result = mysqli_query($conn, $query);
 
-        if(mysqli_num_rows($result) == 1) {
+        $query2 = "SELECT * FROM users WHERE Username = '$username'";
+        $result2 = mysqli_query($conn, $query2);
+        
+        if(mysqli_num_rows($result) != 1) {
+            $_SESSION["error"] = "Calendar ID does not exist";
+        }
+        else if(mysqli_num_rows($result2) >= 1) {
+            $_SESSION["error"] = "Username already exists";
+        }
+        else {
+            $query2 = "INSERT INTO users (Account, Username, FirstName, LastName, Password, Calendar, color) VALUES ('user', '$username', '$firstname', '$lastname', '$password', '$calendarID', '$userColor')";
             $result = mysqli_query($conn, $query2);
 
             $_SESSION['username'] = $username;

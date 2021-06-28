@@ -15,13 +15,22 @@
     <div class="card text-dark bg-light mb-3">
         <h2 class="text-center">Join a Calendar</h2>
         <hr />
+        <?php
+        if(isset($_SESSION["error"])) {
+            $error = $_SESSION["error"];
+            echo "<span id='errorText' class='text-center'>$error</span>";
+        }
+        ?>
         <form action="adduser.php" method="POST" class="row g-3">
 
             <div class="input-group">
                 <span class="input-group-text" id="calID">Calendar ID</span>
                 <input type="text" class="form-control" name="calID" placeholder="e.g. smith201" required>
             </div>
-
+            <div class="container center_div text-center">
+                <label class="text-center">Select your colour</label>
+                <input style="width:100%; height: 30px" type="color" name="userColor" value="#8fffa9">
+            </div>
             <div class="form-group col-md-6">
                 <input type="text" class="form-control" name="userFirstName" placeholder="First Name" required>
             </div>
@@ -33,10 +42,6 @@
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" name="userPassword" placeholder="Password" required>
-            </div>
-            <div class="container center_div text-center">
-                <label class="text-center">Select your colour</label>
-                <input style="width:100%; height: 30px" type="color" name="userColor" value="#5ec6f2">
             </div>
 
             <div class="form-group text-center">
@@ -50,3 +55,5 @@
 
 </body>
 </html>
+
+<?php unset($_SESSION["error"]); ?>

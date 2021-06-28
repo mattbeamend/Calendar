@@ -33,3 +33,10 @@
 #addBtn:hover {
     background-color: #003aa5;
 }
+
+#errorText {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight:500
+}

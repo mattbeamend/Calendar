@@ -15,6 +15,14 @@
     <div class="card text-dark bg-light mb-3">
         <h2 class="text-center">Create a New Calendar</h2>
         <hr />
+        <?php
+        if(isset($_SESSION["error"])) {
+            $error = $_SESSION["error"];
+            echo "<span id='errorText' class='text-center'>$error</span>";
+        }
+        ?>
+
+
         <form action="register.php" method="POST" class="row g-3">
             <div class="form-group">
                 <label for="calName" class="form-label">Calendar Name</label>
@@ -50,3 +58,5 @@
 
 </body>
 </html>
+
+<?php unset($_SESSION["error"]); ?>
