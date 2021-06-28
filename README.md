@@ -6,4 +6,6 @@ The app backend utilsies PHP to communicate with MySQL database, which together 
 
 At some point I plan to expand this project to support daily schedules and harness the extensive features FullCalendar provides for easier management of events. However the current application has fulfilled all my initial requirements and provided a suitable central platform for family and friends to coordinate activities. 
 
-It can be accessed and used at the link: [http://familycalendar.epizy.com](http://familycalendar.epizy.com)
+Try Family Calendar yourself: [http://familycalendar.epizy.com](http://familycalendar.epizy.com)
+
+<img src="screenshot.JPG" width="800">
